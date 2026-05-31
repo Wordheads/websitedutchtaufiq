@@ -1,0 +1,800 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Taufiq Alhakim — Mein Profil</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,500;0,9..40,700;1,9..40,300&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --glass-bg: rgba(255,255,255,0.07);
+      --glass-border: rgba(255,255,255,0.20);
+      --glass-shine: rgba(255,255,255,0.26);
+      --glass-shadow: rgba(0,0,10,0.22);
+      --text-primary: rgba(255,255,255,0.95);
+      --text-secondary: rgba(255,255,255,0.62);
+      --text-muted: rgba(255,255,255,0.38);
+      --accent1: #ff9f0a;
+      --accent2: #ff375f;
+      --accent3: #30d158;
+      --accent4: #0a84ff;
+      --accent5: #bf5af2;
+      --r-xl: 28px; --r-lg: 20px; --r-md: 14px;
+      --blur: blur(38px) saturate(200%);
+      --font-display: 'Cormorant Garamond', Georgia, serif;
+      --font-body: 'DM Sans', system-ui, sans-serif;
+      --font-mono: 'Space Mono', monospace;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      min-height: 100vh;
+      font-family: var(--font-body);
+      background: #05000f;
+      color: var(--text-primary);
+      overflow-x: hidden;
+    }
+
+    /* ── Mesh ── */
+    .bg-mesh {
+      position: fixed; inset: 0; z-index: 0; pointer-events: none;
+    }
+    .bg-mesh::before {
+      content: '';
+      position: absolute; inset: 0;
+      background:
+        radial-gradient(ellipse 80% 55% at 12% 18%, rgba(255,55,95,0.52) 0%, transparent 58%),
+        radial-gradient(ellipse 60% 65% at 88% 8%,  rgba(255,159,10,0.42) 0%, transparent 52%),
+        radial-gradient(ellipse 65% 60% at 72% 88%, rgba(10,132,255,0.38) 0%, transparent 58%),
+        radial-gradient(ellipse 55% 50% at 18% 82%, rgba(191,90,242,0.38) 0%, transparent 52%),
+        radial-gradient(ellipse 45% 45% at 50% 50%, rgba(48,209,88,0.12) 0%, transparent 68%);
+      animation: meshFloat 20s ease-in-out infinite alternate;
+    }
+    @keyframes meshFloat {
+      0%   { transform: scale(1)    translate(0,0); }
+      33%  { transform: scale(1.04) translate(14px,-18px); }
+      66%  { transform: scale(0.97) translate(-9px,14px); }
+      100% { transform: scale(1.02) translate(18px,-9px); }
+    }
+    .bg-mesh::after {
+      content: ''; position: absolute; inset: 0;
+      background: rgba(0,0,8,0.22);
+    }
+    .grain {
+      position: fixed; inset: 0; z-index: 1; pointer-events: none; opacity: 0.032;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+      background-size: 180px;
+    }
+
+    /* ── Header ── */
+    header {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 40px;
+      height: 64px;
+      background: rgba(5,0,15,0.55);
+      backdrop-filter: blur(32px) saturate(180%);
+      -webkit-backdrop-filter: blur(32px) saturate(180%);
+      border-bottom: 1px solid rgba(255,255,255,0.10);
+    }
+    .header-brand {
+      font-family: var(--font-display);
+      font-size: 22px;
+      font-weight: 600;
+      letter-spacing: 0.01em;
+      color: var(--text-primary);
+    }
+    .header-brand span { color: var(--accent2); font-style: italic; }
+
+    nav {
+      display: flex; gap: 4px;
+    }
+    nav a {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-family: var(--font-body);
+      font-size: 13px;
+      font-weight: 500;
+      padding: 7px 18px;
+      border-radius: 999px;
+      letter-spacing: 0.015em;
+      transition: all 0.3s cubic-bezier(0.25,1,0.5,1);
+      border: 1px solid transparent;
+    }
+    nav a:hover {
+      color: var(--text-primary);
+      background: rgba(255,255,255,0.08);
+      border-color: rgba(255,255,255,0.12);
+    }
+    nav a.active {
+      color: #fff;
+      background: rgba(255,255,255,0.13);
+      border-color: rgba(255,255,255,0.22);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.2);
+    }
+
+    /* ── Hero Banner ── */
+    .hero {
+      position: relative; z-index: 2;
+      width: 100%;
+      min-height: 100vh;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      text-align: center;
+      padding: 120px 40px 80px;
+    }
+    .hero-tag {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--accent2);
+      margin-bottom: 20px;
+      opacity: 0;
+      animation: fadeUp 0.8s 0.2s cubic-bezier(0.16,1,0.3,1) forwards;
+    }
+    .hero-name {
+      font-family: var(--font-display);
+      font-size: clamp(56px, 8vw, 110px);
+      font-weight: 300;
+      line-height: 1.02;
+      letter-spacing: -0.02em;
+      margin-bottom: 8px;
+      opacity: 0;
+      animation: fadeUp 0.9s 0.35s cubic-bezier(0.16,1,0.3,1) forwards;
+    }
+    .hero-name em {
+      font-style: italic;
+      background: linear-gradient(135deg, var(--accent1), var(--accent2));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .hero-sub {
+      font-family: var(--font-body);
+      font-size: 16px;
+      font-weight: 300;
+      color: var(--text-secondary);
+      letter-spacing: 0.04em;
+      margin-bottom: 48px;
+      opacity: 0;
+      animation: fadeUp 0.9s 0.5s cubic-bezier(0.16,1,0.3,1) forwards;
+    }
+    .hero-photo-wrap {
+      width: 140px; height: 140px;
+      border-radius: 50%;
+      overflow: hidden;
+      position: relative;
+      margin: 0 auto 40px;
+      opacity: 0;
+      animation: fadeUp 0.9s 0.15s cubic-bezier(0.16,1,0.3,1) forwards;
+    }
+    .hero-photo-wrap::before {
+      content: '';
+      position: absolute; inset: -3px;
+      border-radius: 50%;
+      background: conic-gradient(from 0deg, var(--accent1), var(--accent2), var(--accent5), var(--accent4), var(--accent1));
+      animation: ringRotate 4s linear infinite;
+      z-index: 0;
+    }
+    @keyframes ringRotate { to { transform: rotate(360deg); } }
+    .hero-photo-ring {
+      position: absolute; inset: 3px;
+      border-radius: 50%;
+      overflow: hidden;
+      z-index: 1;
+      background: #05000f;
+    }
+    .hero-photo-ring img {
+      width: 100%; height: 100%;
+      object-fit: cover; object-position: top center;
+    }
+    .scroll-hint {
+      font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.15em;
+      color: var(--text-muted); text-transform: uppercase;
+      display: flex; align-items: center; gap: 10px;
+      opacity: 0; animation: fadeUp 1s 1s forwards;
+    }
+    .scroll-hint::before, .scroll-hint::after {
+      content: ''; flex: 1; height: 1px; background: rgba(255,255,255,0.1);
+    }
+
+    /* ── Page layout ── */
+    .page {
+      position: relative; z-index: 2;
+      width: 100%; max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 32px 80px;
+    }
+
+    /* ── Section ── */
+    section { margin-bottom: 80px; }
+    .section-eyebrow {
+      display: flex; align-items: center; gap: 14px;
+      margin-bottom: 20px;
+    }
+    .eyebrow-num {
+      font-family: var(--font-mono); font-size: 11px; color: var(--text-muted);
+    }
+    .eyebrow-label {
+      font-family: var(--font-mono); font-size: 11px;
+      letter-spacing: 0.13em; text-transform: uppercase; color: var(--text-muted);
+    }
+    .eyebrow-line { flex: 1; height: 1px; background: rgba(255,255,255,0.08); }
+
+    .section-title {
+      font-family: var(--font-display);
+      font-size: clamp(34px, 5vw, 60px);
+      font-weight: 300;
+      letter-spacing: -0.02em;
+      line-height: 1.1;
+      margin-bottom: 32px;
+    }
+    .section-title em {
+      font-style: italic;
+      color: var(--accent5);
+    }
+
+    /* ── Liquid Card ── */
+    .liquid-card {
+      position: relative;
+      background: var(--glass-bg);
+      backdrop-filter: var(--blur);
+      -webkit-backdrop-filter: var(--blur);
+      border: 1px solid var(--glass-border);
+      border-radius: var(--r-xl);
+      box-shadow: 0 24px 60px var(--glass-shadow),
+                  inset 0 1.5px 0 var(--glass-shine),
+                  inset 0 -1px 0 rgba(0,0,0,0.1);
+      overflow: hidden;
+      transition: transform 0.55s cubic-bezier(0.16,1,0.3,1), box-shadow 0.55s ease;
+    }
+    .liquid-card:hover {
+      transform: translateY(-5px) scale(1.008);
+      box-shadow: 0 40px 80px rgba(0,0,0,0.32),
+                  inset 0 1.5px 0 rgba(255,255,255,0.32),
+                  inset 0 -1px 0 rgba(0,0,0,0.1);
+    }
+    .liq-refl {
+      position: absolute; inset: 0;
+      background: linear-gradient(135deg, rgba(255,255,255,0.16) 0%, rgba(255,255,255,0) 44%);
+      pointer-events: none; border-radius: inherit;
+    }
+    .liq-shimmer {
+      position: absolute; top: -60%; left: -60%;
+      width: 220%; height: 220%;
+      background: conic-gradient(from 210deg, transparent 60%, rgba(255,255,255,0.035) 65%, transparent 70%);
+      animation: shimmerSpin 14s linear infinite; pointer-events: none;
+    }
+    @keyframes shimmerSpin { to { transform: rotate(360deg); } }
+
+    /* ═══ PROFIL ═══ */
+    .profiel-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 16px;
+    }
+    .profiel-main { grid-column: 1 / -1; padding: 40px 44px; }
+    .profiel-header {
+      display: flex; align-items: center; gap: 32px; margin-bottom: 36px;
+    }
+    .profiel-photo {
+      width: 100px; height: 100px; border-radius: 50%;
+      overflow: hidden; flex-shrink: 0; border: 2px solid rgba(255,255,255,0.15);
+    }
+    .profiel-photo img {
+      width: 100%; height: 100%;
+      object-fit: cover; object-position: top center;
+    }
+    .profiel-info {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .profiel-name {
+      font-family: var(--font-display);
+      font-size: 38px; font-weight: 600;
+      letter-spacing: -0.02em; line-height: 1.1;
+      margin-bottom: 6px;
+    }
+    .profiel-meta {
+      font-family: var(--font-body); font-size: 14px;
+      color: var(--text-secondary); letter-spacing: 0.02em;
+    }
+    .chips { display: flex; flex-wrap: wrap; gap: 9px; margin-bottom: 32px; }
+    .chip {
+      display: inline-flex; align-items: center; gap: 7px;
+      padding: 7px 15px; border-radius: 999px;
+      font-family: var(--font-body); font-size: 12.5px; font-weight: 500;
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.14);
+      color: var(--text-primary);
+      backdrop-filter: blur(8px); transition: background 0.3s;
+    }
+    .chip:hover { background: rgba(255,255,255,0.14); }
+    .chip-dot { width: 7px; height: 7px; border-radius: 50%; flex-shrink: 0; }
+
+    .hobby-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    .hobby-card {
+      padding: 20px 22px;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.10);
+      border-radius: var(--r-lg); transition: all 0.3s;
+    }
+    .hobby-card:hover { background: rgba(255,255,255,0.10); transform: translateY(-2px); }
+    .hobby-icon { font-size: 30px; margin-bottom: 10px; }
+    .hobby-title { font-family: var(--font-display); font-size: 18px; font-weight: 600; margin-bottom: 5px; }
+    .hobby-desc { font-family: var(--font-body); font-size: 12.5px; color: var(--text-secondary); line-height: 1.6; }
+
+    /* ═══ EINDRUCK ═══ */
+    .kesan-wrap { padding: 40px 44px; }
+    .kesan-lead {
+      font-family: var(--font-display);
+      font-size: 22px; font-weight: 300; font-style: italic;
+      color: var(--text-secondary); line-height: 1.6;
+      border-left: 2px solid rgba(255,255,255,0.15);
+      padding-left: 24px; margin-bottom: 36px;
+    }
+    .kesan-blocks { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; }
+    .kesan-block {
+      padding: 22px 24px;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.10);
+      border-top: 3px solid transparent;
+      border-radius: 0 0 var(--r-md) var(--r-md);
+      transition: all 0.3s;
+    }
+    .kesan-block:hover { background: rgba(255,255,255,0.09); }
+    .kb-label {
+      font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.12em;
+      text-transform: uppercase; margin-bottom: 12px;
+    }
+    .kb-text {
+      font-family: var(--font-body); font-size: 13.5px;
+      color: var(--text-secondary); line-height: 1.75;
+    }
+    .kb-text strong { color: var(--text-primary); font-weight: 600; }
+    .spiel-pill {
+      display: inline-flex; align-items: center; gap: 6px;
+      padding: 5px 12px; border-radius: 999px; margin-top: 12px;
+      font-family: var(--font-mono); font-size: 11px; font-weight: 700;
+      background: rgba(48,209,88,0.12); border: 1px solid rgba(48,209,88,0.28);
+      color: var(--accent3);
+    }
+
+    /* ═══ ANLEITUNG ═══ */
+    .proc-wrap { padding: 40px 44px; }
+    .proc-intro {
+      font-family: var(--font-display); font-size: 18px; font-weight: 300;
+      color: var(--text-secondary); line-height: 1.7; margin-bottom: 32px;
+    }
+
+    .goal-box {
+      padding: 18px 22px;
+      background: rgba(10,132,255,0.09);
+      border: 1px solid rgba(10,132,255,0.22);
+      border-radius: var(--r-md); margin-bottom: 28px;
+    }
+    .goal-label {
+      font-family: var(--font-mono); font-size: 10px;
+      letter-spacing: 0.12em; text-transform: uppercase;
+      color: var(--accent4); margin-bottom: 8px;
+    }
+    .goal-text {
+      font-family: var(--font-body); font-size: 13.5px;
+      color: var(--text-secondary); line-height: 1.65;
+    }
+
+    .mat-label {
+      font-family: var(--font-mono); font-size: 10px;
+      letter-spacing: 0.12em; text-transform: uppercase;
+      color: var(--text-muted); margin-bottom: 14px;
+    }
+    .mat-grid {
+      display: grid; grid-template-columns: repeat(6, 1fr); gap: 10px;
+      margin-bottom: 28px;
+    }
+    .mat-item {
+      padding: 14px 10px; background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.10);
+      border-radius: var(--r-md); text-align: center; transition: all 0.3s;
+    }
+    .mat-item:hover { background: rgba(255,255,255,0.10); transform: scale(1.04); }
+    .mat-icon { font-size: 24px; margin-bottom: 7px; }
+    .mat-name { font-family: var(--font-body); font-size: 11px; color: var(--text-secondary); }
+
+    .caution-box {
+      padding: 14px 18px; border-radius: var(--r-md); margin-bottom: 32px;
+      background: rgba(255,159,10,0.09); border: 1px solid rgba(255,159,10,0.22);
+      font-family: var(--font-body); font-size: 13px; color: var(--text-secondary);
+      display: flex; gap: 10px; align-items: flex-start; line-height: 1.65;
+    }
+
+    .steps-label {
+      font-family: var(--font-mono); font-size: 10px;
+      letter-spacing: 0.12em; text-transform: uppercase;
+      color: var(--text-muted); margin-bottom: 18px;
+    }
+    .step { display: flex; gap: 20px; margin-bottom: 24px; align-items: flex-start; }
+    .step-num {
+      width: 38px; height: 38px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-family: var(--font-mono); font-size: 13px; font-weight: 700;
+      flex-shrink: 0; position: relative;
+    }
+    .step:not(:last-child) .step-num::after {
+      content: ''; position: absolute; top: 100%; left: 50%;
+      transform: translateX(-50%); width: 1px; height: 36px;
+      background: rgba(255,255,255,0.09);
+    }
+    .step-body { flex: 1; padding-top: 7px; }
+    .step-title {
+      font-family: var(--font-display); font-size: 20px; font-weight: 600;
+      letter-spacing: -0.01em; margin-bottom: 6px;
+    }
+    .step-desc {
+      font-family: var(--font-body); font-size: 13.5px;
+      color: var(--text-secondary); line-height: 1.75;
+    }
+    .step-img {
+      margin-top: 14px; border-radius: var(--r-md);
+      overflow: hidden; border: 1px solid rgba(255,255,255,0.10);
+    }
+    .step-img img { width: 100%; display: block; height: auto; }
+
+    .tip-box {
+      margin-top: 28px; padding: 16px 20px;
+      background: rgba(48,209,88,0.08); border: 1px solid rgba(48,209,88,0.20);
+      border-radius: var(--r-md);
+      font-family: var(--font-body); font-size: 13px; color: var(--text-secondary);
+      display: flex; gap: 10px; line-height: 1.7;
+    }
+
+    /* ── Footer ── */
+    footer {
+      position: relative; z-index: 2;
+      border-top: 1px solid rgba(255,255,255,0.08);
+      padding: 48px 40px;
+      display: flex; align-items: center; justify-content: space-between;
+      gap: 20px;
+    }
+    .footer-brand {
+      font-family: var(--font-display); font-size: 20px; font-weight: 300;
+    }
+    .footer-brand em { font-style: italic; color: var(--accent2); }
+    .footer-info {
+      font-family: var(--font-body); font-size: 12px;
+      color: var(--text-muted); text-align: center; line-height: 1.7;
+    }
+    .footer-mono {
+      font-family: var(--font-mono); font-size: 11px;
+      color: var(--text-muted); text-align: right;
+    }
+
+    /* ── Animations ── */
+    .fade-up {
+      opacity: 0; transform: translateY(28px);
+      animation: fadeUp 0.75s cubic-bezier(0.16,1,0.3,1) forwards;
+    }
+    @keyframes fadeUp { to { opacity: 1; transform: translateY(0); } }
+    .d1 { animation-delay: 0.08s; }
+    .d2 { animation-delay: 0.18s; }
+    .d3 { animation-delay: 0.3s; }
+
+    /* ── Responsive ── */
+    @media (max-width: 768px) {
+      header { padding: 0 20px; }
+      nav a { padding: 6px 11px; font-size: 12px; }
+      .page { padding: 0 16px 60px; }
+      .profiel-main { padding: 28px 24px; }
+      .hobby-grid, .kesan-blocks { grid-template-columns: 1fr; }
+      .mat-grid { grid-template-columns: repeat(3,1fr); }
+      .profiel-grid { grid-template-columns: 1fr; }
+      .profiel-header { flex-direction: column; align-items: flex-start; gap: 18px; }
+      footer { flex-direction: column; text-align: center; padding: 36px 20px; }
+      .footer-mono { text-align: center; }
+      .kesan-blocks { grid-template-columns: 1fr; }
+      .proc-wrap { padding: 28px 24px; }
+      .kesan-wrap { padding: 28px 24px; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="bg-mesh" aria-hidden="true"></div>
+<div class="grain" aria-hidden="true"></div>
+
+<!-- ── HEADER ── -->
+<header>
+  <div class="header-brand">Taufiq <em>Alhakim</em></div>
+  <nav id="main-nav">
+    <a href="#profil" class="active">Profil</a>
+    <a href="#eindruck">Botschaft &amp; Eindruck</a>
+    <a href="#anleitung">Anleitung</a>
+  </nav>
+</header>
+
+<!-- ── HERO ── -->
+<div class="hero">
+  <div class="hero-photo-wrap">
+    <div class="hero-photo-ring">
+      <img src="taufiq-photo.jpeg" alt="Taufiq Alhakim"/>
+    </div>
+  </div>
+  <div class="hero-tag">Willkommen auf meinem Portfolio</div>
+  <h1 class="hero-name">Taufiq <em>Alhakim</em></h1>
+  <div class="hero-sub">Entwickler · Tech-Enthusiast · Lebenslang Lernender</div>
+  <div class="scroll-hint">Nach unten scrollen</div>
+</div>
+
+<!-- ── MAIN PAGE ── -->
+<div class="page">
+
+  <!-- ═══ SEKTION 1: PROFIL ═══ -->
+  <section id="profil" class="fade-up d1">
+    <div class="section-eyebrow">
+      <div class="eyebrow-num">01</div>
+      <div class="eyebrow-label">Mein Profil</div>
+      <div class="eyebrow-line"></div>
+    </div>
+    
+    <h2 class="section-title">Über <em>mich</em></h2>
+
+    <div class="liquid-card">
+      <div class="liq-refl"></div><div class="liq-shimmer"></div>
+      
+      <div class="profiel-grid">
+        <div class="profiel-main">
+          
+          <div class="profiel-header">
+            <div class="profiel-photo">
+              <img src="taufiq-photo.jpeg" alt="Taufiq"/>
+            </div>
+            <div class="profiel-info">
+              <div class="profiel-name">Muhammad Taufiq Alhakim</div>
+              <div class="profiel-meta">17 Jahre · Klasse XI TEK 2 · Elektrokommunikation</div>
+              <div class="profiel-meta" style="margin-top:4px;">SMK Negeri 7 Semarang · Indonesien</div>
+            </div>
+          </div>
+
+          <div class="chips">
+            <div class="chip"><span class="chip-dot" style="background:var(--accent2)"></span>17 Jahre alt</div>
+            <div class="chip"><span class="chip-dot" style="background:var(--accent4)"></span>Klasse XI TEK 2</div>
+            <div class="chip"><span class="chip-dot" style="background:var(--accent5)"></span>Elektrokommunikation</div>
+            <div class="chip"><span class="chip-dot" style="background:var(--accent1)"></span>SMK Negeri 7 Semarang</div>
+            <div class="chip"><span class="chip-dot" style="background:var(--accent3)"></span>Semarang, Indonesien</div>
+          </div>
+
+          <div class="hobby-grid">
+            <div class="hobby-card">
+              <div class="hobby-title">Soziale Veranstaltungen</div>
+              <div class="hobby-desc">Konzerte, Seminare und öffentliche Treffen – ich bin gerne dabei. Ich liebe die Energie, wenn Menschen zusammenkommen.</div>
+            </div>
+            <div class="hobby-card">
+              <div class="hobby-title">Gaming</div>
+              <div class="hobby-desc">Videospiele sind meine zweite große Leidenschaft neben sozialen Aktivitäten. Eine gute Herausforderung oder Geschichte macht sie besonders spannend.</div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ SEKTION 2: EINDRUCK ═══ -->
+  <section id="eindruck" class="fade-up d2">
+    <div class="section-eyebrow">
+      <div class="eyebrow-num">02</div>
+      <div class="eyebrow-label">Botschaft & Eindruck</div>
+      <div class="eyebrow-line"></div>
+    </div>
+
+    <h2 class="section-title">Deutsch lernen in der <em>Schule</em></h2>
+
+    <div class="liquid-card">
+      <div class="liq-refl"></div><div class="liq-shimmer"></div>
+      <div class="kesan-wrap">
+
+        <p class="kesan-lead">
+          "Deutsch zu lernen war eine Erfahrung, die meinen Blick auf die Welt erweitert hat —
+          schwieriger als gedacht, aber viel unterhaltsamer als erwartet."
+        </p>
+
+        <div class="kesan-blocks">
+          <div class="kesan-block" style="border-top-color:var(--accent5);">
+            <div class="kb-label" style="color:var(--accent5);">Botschaft</div>
+            <p class="kb-text">
+              Meine Botschaft an Mitschüler: Scheut euch nicht zu sprechen, auch wenn ihr Fehler macht.
+              Eine Sprache lernt man am besten, indem man sie benutzt, nicht indem man sie nur studiert.
+              Jede Gelegenheit, Deutsch zu üben, ist eine Chance, die man nutzen sollte.
+            </p>
+          </div>
+          <div class="kesan-block" style="border-top-color:var(--accent1);">
+            <div class="kb-label" style="color:var(--accent1);">Eindruck</div>
+            <p class="kb-text">
+              Mein Eindruck vom Deutschunterricht war positiv und überraschend.
+              Die Grammatik war anfangs herausfordernd, aber jede Stunde brachte etwas Neues.
+              Am meisten schätze ich die Sprachspiele — die spielerischen Aktivitäten am Ende jeder Stunde.
+            </p>
+            <div class="spiel-pill">Sprachspiele — Highlight jeder Stunde!</div>
+          </div>
+          <div class="kesan-block" style="border-top-color:var(--accent3);">
+            <div class="kb-label" style="color:var(--accent3);">Hoffnung</div>
+            <p class="kb-text">
+              Ich hoffe, eines Tages direkt mit deutschsprachigen Menschen kommunizieren zu können.
+              Herzlichen Dank an unseren Lehrer für den kreativen Ansatz und die positive Energie im Unterricht.
+              <em>Vielen Dank!</em> 🙏
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ SEKTION 3: ANLEITUNG ═══ -->
+  <section id="anleitung" class="fade-up d3">
+    <div class="section-eyebrow fade-up d1">
+      <div class="eyebrow-num">03</div>
+      <div class="eyebrow-label">Tutorialtext</div>
+      <div class="eyebrow-line"></div>
+    </div>
+    <h2 class="section-title fade-up d2">RAM installieren in einem <em>Speichersteckplatz</em></h2>
+
+    <div class="liquid-card fade-up d3">
+      <div class="liq-refl"></div>
+      <div class="liq-shimmer"></div>
+      <div class="proc-wrap">
+
+        <p class="proc-intro">Eine schrittweise Anleitung für das korrekte Einsetzen eines RAM-Moduls (Arbeitsspeicher) in den DIMM-Slot eines Motherboards.</p>
+
+        <div class="goal-box">
+          <div class="goal-label">🎯 Ziel / Zielsetzung</div>
+          <p class="goal-text">Einen RAM-Stick erfolgreich im richtigen DIMM-Slot installieren, sodass der Computer den Speicher erkennt und optimal nutzt — inklusive Dual-Channel-Konfiguration, wenn verfügbar.</p>
+        </div>
+
+        <p class="mat-label">🧰 Benötigte Materialien &amp; Werkzeuge</p>
+        <div class="mat-grid">
+          <div class="mat-item"><div class="mat-icon">💾</div><div class="mat-name">RAM-Stick (DIMM)</div></div>
+          <div class="mat-item"><div class="mat-icon">🖥️</div><div class="mat-name">Motherboard</div></div>
+          <div class="mat-item"><div class="mat-icon">🔌</div><div class="mat-name">Antistatikarmband</div></div>
+          <div class="mat-item"><div class="mat-icon">🔦</div><div class="mat-name">Taschenlampe (optional)</div></div>
+          <div class="mat-item"><div class="mat-icon">📖</div><div class="mat-name">Handbuch</div></div>
+          <div class="mat-item"><div class="mat-icon">🧴</div><div class="mat-name">Saubere Arbeitsfläche</div></div>
+        </div>
+
+        <div class="caution-box">
+          <span>⚠️</span>
+          <span><strong style="color:var(--accent1);">Achtung:</strong> Schalten Sie den Computer komplett aus und trennen Sie ihn vom Stromnetz, bevor Sie interne Komponenten berühren. Statische Elektrizität kann RAM und andere Teile dauerhaft beschädigen.</span>
+        </div>
+
+        <p class="steps-label">📋 Schritte / Arbeitsschritte</p>
+
+        <div class="step">
+          <div class="step-num" style="background:rgba(255,55,95,0.18);color:var(--accent2);">1</div>
+          <div class="step-body">
+            <div class="step-title">Schalte den Computer aus und ziehe den Stecker</div>
+            <div class="step-desc">Fahre das System vollständig herunter und ziehe das Netzkabel aus der Steckdose. Drücke dann den Einschaltknopf kurz, um verbleibende Ladung zu entladen.</div>
+          </div>
+        </div>
+
+        <div class="step">
+          <div class="step-num" style="background:rgba(255,159,10,0.18);color:var(--accent1);">2</div>
+          <div class="step-body">
+            <div class="step-title">Öffne das Gehäuse</div>
+            <div class="step-desc">Entferne die Seitenwand der PC‑Gehäuseabdeckung. Lege sie zur Seite auf eine saubere, weiche Unterlage.</div>
+          </div>
+        </div>
+
+        <div class="step">
+          <div class="step-num" style="background:rgba(10,132,255,0.18);color:var(--accent4);">3</div>
+          <div class="step-body">
+            <div class="step-title">Finde die DIMM-Slots auf dem Motherboard</div>
+            <div class="step-desc">Suche die langen, schmalen Steckplätze auf dem Mainboard. Meist sind es 2 oder 4 DIMM-Slots. Nutze das Handbuch, um die optimalen Slots für Dual-Channel zu bestimmen.</div>
+            <div class="step-img"><img src="empty-ram-slots.jpg" alt="Leerer DIMM-Slot"/></div>
+          </div>
+        </div>
+
+        <div class="step">
+          <div class="step-num" style="background:rgba(191,90,242,0.18);color:var(--accent5);">4</div>
+          <div class="step-body">
+            <div class="step-title">Wähle die richtige Slot-Konfiguration</div>
+            <div class="step-desc">Bei einem RAM-Stick nutzt du den empfohlenen Slot (oft A2). Bei zwei Sticks positionierst du sie für Dual-Channel in den entsprechenden Paaren (z. B. A1 + A2 oder B1 + B2).</div>
+            <div class="step-img"><img src="ram-configurations.jpg" alt="RAM-Konfiguration"/></div>
+          </div>
+        </div>
+
+        <div class="step">
+          <div class="step-num" style="background:rgba(255,55,95,0.18);color:var(--accent2);">5</div>
+          <div class="step-body">
+            <div class="step-title">Öffne die Halteklammern</div>
+            <div class="step-desc">Drücke die Kunststoffklammern am Ende des DIMM-Slots nach außen, bis sie einrasten und das Slot-Ende freigeben.</div>
+          </div>
+        </div>
+
+        <div class="step">
+          <div class="step-num" style="background:rgba(10,132,255,0.18);color:var(--accent4);">6</div>
+          <div class="step-body">
+            <div class="step-title">Richte die RAM-Stick aus und setze sie ein</div>
+            <div class="step-desc">Halte den RAM-Stick nur an den Seiten. Richte die Kerbe an den goldenen Kontakten auf den Erhebungen im Slot aus. Drücke den RAM gleichmäßig mit beiden Daumen nach unten, bis beide Klammern einrasten.</div>
+            <div class="step-img"><img src="inserting-ram.jpg" alt="RAM einstecken"/></div>
+          </div>
+        </div>
+
+        <div class="step">
+          <div class="step-num" style="background:rgba(48,209,88,0.18);color:var(--accent3);">7</div>
+          <div class="step-body">
+            <div class="step-title">Prüfe die Installation</div>
+            <div class="step-desc">Der RAM sollte flach im Slot sitzen, ohne schief zu stehen. Beide Klammern müssen geschlossen sein und das Modul sicher halten.</div>
+            <div class="step-img"><img src="installed-ram.jpg" alt="Installierter RAM"/></div>
+          </div>
+        </div>
+
+        <div class="step">
+          <div class="step-num" style="background:rgba(255,159,10,0.18);color:var(--accent1);">8</div>
+          <div class="step-body">
+            <div class="step-title">Schließe das Gehäuse und starte den Computer</div>
+            <div class="step-desc">Bringe das Seitenteil wieder an, schließe das Netzkabel an und starte den PC. Rufe bei Bedarf das BIOS/UEFI auf, um den neuen Speicher zu überprüfen.</div>
+          </div>
+        </div>
+
+        <div class="step">
+          <div class="step-num" style="background:rgba(48,209,88,0.18);color:var(--accent3);">9</div>
+          <div class="step-body">
+            <div class="step-title">Verifiziere den RAM im Betriebssystem</div>
+            <div class="step-desc">Öffne in Windows den Task-Manager unter Leistung → Arbeitsspeicher oder nutze unter Linux <code style="background:rgba(255,255,255,0.1);padding:2px 8px;border-radius:4px;font-family:var(--font-mono);font-size:12px;">free -h</code> zur Kontrolle.</div>
+          </div>
+        </div>
+
+        <div class="tip-box">
+          <div style="font-size:18px;">💡</div>
+          <div>
+            <strong>Pro-Tipp:</strong> Achte auf RAM-Kompatibilität und setze die Module nur in die vorgesehenen Slots ein.
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<!-- ── FOOTER ── -->
+<footer>
+  <div class="footer-brand"><em>Taufiq</em> Alhakim</div>
+  <div class="footer-info">
+    Erstellt für den Deutschunterricht &nbsp;·&nbsp; SMK Negeri 7 Semarang<br/>
+    Klasse XI TEK 2 &nbsp;·&nbsp; Elektrokommunikation
+  </div>
+  <div class="footer-mono">
+    Schuljahr 2025<br/>
+    Fach: Deutsch
+  </div>
+</footer>
+
+<script>
+  // Einfaches Skript für aktiven Navigations-Link beim Scrollen
+  const sections = document.querySelectorAll('section');
+  const navLinks = document.querySelectorAll('nav a');
+
+  window.addEventListener('scroll', () => {
+    let current = '';
+    sections.forEach(section => {
+      const sectionTop = section.offsetTop;
+      const sectionHeight = section.clientHeight;
+      if (pageYOffset >= (sectionTop - 200)) {
+        current = section.getAttribute('id');
+      }
+    });
+
+    navLinks.forEach(a => {
+      a.classList.remove('active');
+      if (a.getAttribute('href').includes(current)) {
+        a.classList.add('active');
+      }
+    });
+  });
+</script>
+
+</body>
+</html>
